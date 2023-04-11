@@ -12,7 +12,7 @@ func main() {
 
 	// se usa el metodo StripPrefix para servir index.html como default en /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "static/index.html")
+		http.ServeFile(w, r, "index.html")
 	})
 
 	// iniciar servidor
