@@ -9,7 +9,11 @@ import (
 func main() {
 	// se configura para leer archivos html desde la carpeta 'static'
 	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/", http.StripPrefix("/", fs))
+
+	// se usa el metodo StripPrefix para servir index.html como default en /
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "static/index.html")
+	})
 
 	// iniciar servidor
 	log.Println("escuchando en puerto 8080:")
