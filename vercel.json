@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [{ "src": "static/**", "use": "@vercel/static" }],
+
+  "routes": [
+    { "src": "/about", "dest": "/static/about.html" },
+    { "src": "/(.*)", "dest": "/static/$1.html" },
+    { "src": "/(.*)", "dest": "/static/404.html" }
+  ]
+}
