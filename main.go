@@ -1,23 +1,21 @@
-package main
+package main 
 
-import (
-	"log"
-	"net/http"
+import ( 
+    "log" 
+    "net/http" 
+) 
 
-)
+func main() { 
+    // Set up the file server to serve files from the "public" directory
+    fs := http.FileServer(http.Dir("public")) 
 
-func main() {
-	// se configura para leer archivos html desde la carpeta 'static'
-	fs := http.FileServer(http.Dir("static"))
+    // Use the StripPrefix method to serve index.html as the default page at the root URL path
+    http.Handle("/", http.StripPrefix("/", fs)) 
 
-	// se usa el metodo StripPrefix para servir index.html como default en /
-	home := http.FileServer(http.Dir("/index.html"))
-	http.Handle("/", http.StripPrefix("/", home))
-
-	// iniciar servidor
-	log.Println("escuchando en puerto 8080:")
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+    // Start the server and listen on port 80
+    log.Println("Listening on port 80...")
+    err := http.ListenAndServe(":80", nil) 
+    if err != nil { 
+        log.Fatal(err) 
+    } 
 }

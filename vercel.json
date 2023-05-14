@@ -1,14 +1,12 @@
 {
+  "version": 2,
   "builds": [
-    {
-      "src": "main.go",
-      "use": "@vercel/go"
-    }
+    { "src": "main.go", "use": "@now/go" }
   ],
   "routes": [
-    {
-      "src": "/.*",
-      "dest": "/api/index.html"
-    }
-  ]
+    { "src": "/(.*)", "dest": "/" }
+  ],
+  "env": {
+    "GO111MODULE": "on"
+  }
 }
